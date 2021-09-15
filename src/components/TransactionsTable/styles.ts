@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   margin-top: 4rem;
@@ -19,21 +19,21 @@ export const Tr = styled.tr`
   line-height: 1.5rem;
 `;
 
-export const Th = styled.th`
+export const Th = styled.th``;
 
-`;
+export const Tbody = styled.tbody``;
 
-export const Tbody = styled.tbody`
+interface TdProps {
+  transactionTypeColor?: string;
+}
 
-`;
-
-export const Td = styled.td`
+export const Td = styled.td<TdProps>`
   padding: 1rem 2rem;
   border: 0;
   background: var(--shape);
-  color: var(--text-body);
+  color: ${(props) => props.transactionTypeColor};
   border-radius: 0.25rem;
-  
+
   &:first-child {
     color: var(--text-title);
   }
