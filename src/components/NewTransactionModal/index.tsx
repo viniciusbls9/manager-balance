@@ -1,9 +1,10 @@
+import React, { FormEvent, useState } from 'react';
 import Modal from 'react-modal';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
 import closeImg from '../../assets/close.svg';
+import { api } from '../../services/api';
 import * as Styled from './styles';
-import React, { useState } from 'react';
 
 interface NewTransactionModalProps {
   isOpen: boolean;
@@ -14,9 +15,23 @@ export function NewTransactionModal({
   isOpen,
   onRequestClose,
 }: NewTransactionModalProps) {
+  const [title, setTitle] = useState('');
+  const [value, setValue] = useState(0);
+  const [category, setCategory] = useState('');
   const [type, setType] = useState('deposit');
 
-  function handleSetTypeDeposit() {}
+  function handleCreateNewTransaction(event: FormEvent) {
+    event.preventDefault();
+
+    const data = {
+      title,
+      value,
+      category,
+      type,
+    };
+
+    api.post('/transactions', data);
+  }
   return (
     <Modal
       isOpen={isOpen}
@@ -31,12 +46,22 @@ export function NewTransactionModal({
       >
         <img src={closeImg} alt="Fechar modal" />
       </button>
-      <Styled.Container>
+
+      <Styled.Container onSubmit={handleCreateNewTransaction}>
         <Styled.ModalTitle>Cadastrar transação</Styled.ModalTitle>
 
-        <Styled.ModalInput placeholder="Título" />
+        <Styled.ModalInput
+          placeholder="Título"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
 
-        <Styled.ModalInput placeholder="Valor" type="number" />
+        <Styled.ModalInput
+          placeholder="Valor"
+          type="number"
+          value={value}
+          onChange={(event) => setValue(Number(event.target.value))}
+        />
 
         <Styled.TransactionTypeContainer>
           <Styled.TransactionButton
@@ -64,7 +89,11 @@ export function NewTransactionModal({
           </Styled.TransactionButton>
         </Styled.TransactionTypeContainer>
 
-        <Styled.ModalInput placeholder="Categoria" type="number" />
+        <Styled.ModalInput
+          placeholder="Categoria"
+          value={category}
+          onChange={(event) => setCategory(event.target.value)}
+        />
 
         <button type="submit">Cadastrar</button>
       </Styled.Container>
