@@ -1,8 +1,9 @@
-import Modal from "react-modal";
-import incomeImg from "../../assets/income.svg";
-import outcomeImg from "../../assets/outcome.svg";
-import closeImg from "../../assets/close.svg";
-import * as Styled from "./styles";
+import Modal from 'react-modal';
+import incomeImg from '../../assets/income.svg';
+import outcomeImg from '../../assets/outcome.svg';
+import closeImg from '../../assets/close.svg';
+import * as Styled from './styles';
+import React, { useState } from 'react';
 
 interface NewTransactionModalProps {
   isOpen: boolean;
@@ -13,6 +14,9 @@ export function NewTransactionModal({
   isOpen,
   onRequestClose,
 }: NewTransactionModalProps) {
+  const [type, setType] = useState('deposit');
+
+  function handleSetTypeDeposit() {}
   return (
     <Modal
       isOpen={isOpen}
@@ -35,12 +39,26 @@ export function NewTransactionModal({
         <Styled.ModalInput placeholder="Valor" type="number" />
 
         <Styled.TransactionTypeContainer>
-          <Styled.TransactionButton type="button">
+          <Styled.TransactionButton
+            type="button"
+            onClick={() => {
+              setType('deposit');
+            }}
+            isActive={type === 'deposit'}
+            activeColor="green"
+          >
             <Styled.TransactionImgButton src={incomeImg} alt="Entrada" />
             <Styled.TransactionTextType>entrada</Styled.TransactionTextType>
           </Styled.TransactionButton>
 
-          <Styled.TransactionButton type="button">
+          <Styled.TransactionButton
+            type="button"
+            onClick={() => {
+              setType('withdraw');
+            }}
+            isActive={type === 'withdraw'}
+            activeColor="red"
+          >
             <Styled.TransactionImgButton src={outcomeImg} alt="Entrada" />
             <Styled.TransactionTextType>saída</Styled.TransactionTextType>
           </Styled.TransactionButton>

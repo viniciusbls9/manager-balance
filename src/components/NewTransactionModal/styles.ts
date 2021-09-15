@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.form`
-  button[type="submit"] {
+  button[type='submit'] {
     width: 100%;
     padding: 0 1.5rem;
     height: 4rem;
@@ -54,19 +54,31 @@ export const TransactionTypeContainer = styled.div`
   gap: 0.5rem;
 `;
 
-export const TransactionButton = styled.button`
+interface TransactionButtonProps {
+  isActive: boolean;
+  activeColor: 'green' | 'red';
+}
+
+const colors = {
+  green: 'rgba(51, 204, 149, 0.1)',
+  red: 'rgba(229, 46, 77, 0.1)',
+};
+
+export const TransactionButton = styled.button<TransactionButtonProps>`
   height: 4rem;
   border: 1px solid #d7d7d7;
   border-radius: 0.25rem;
 
-  background: transparent;
+  background: ${(props) =>
+    props.isActive ? colors[props.activeColor] : 'transparent'};
 
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: border-color 0.3s;
 
   &:hover {
-    border-color: #ddd;
+    border-color: #aaa;
   }
 `;
 
