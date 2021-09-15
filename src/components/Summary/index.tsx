@@ -1,8 +1,8 @@
-import incomeImg from '../../assets/income.svg'
-import outcomeImg from '../../assets/outcome.svg'
-import totalImg from '../../assets/total.svg'
+import incomeImg from '../../assets/income.svg';
+import outcomeImg from '../../assets/outcome.svg';
+import totalImg from '../../assets/total.svg';
 
-import * as Styled from './styles'
+import * as Styled from './styles';
 
 export function Summary() {
   return (
@@ -21,7 +21,7 @@ export function Summary() {
         </Styled.HeaderCard>
         <Styled.ValueCard>- R$ 500,00</Styled.ValueCard>
       </Styled.CardSummary>
-      <Styled.CardSummary>
+      <Styled.CardSummary background="#33cc95" color="#fff">
         <Styled.HeaderCard>
           <Styled.ParagraphCard>Total</Styled.ParagraphCard>
           <Styled.IconCard src={totalImg} alt="Total" />
@@ -29,5 +29,5 @@ export function Summary() {
         <Styled.ValueCard>R$ 500,00</Styled.ValueCard>
       </Styled.CardSummary>
     </Styled.Container>
-  )
+  );
 }

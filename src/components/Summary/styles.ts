@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: grid;
@@ -7,11 +7,16 @@ export const Container = styled.div`
   margin-top: -10rem;
 `;
 
-export const CardSummary = styled.div`
-  background: var(--shape);
+interface CardSummaryProps {
+  background?: string;
+  color?: string;
+}
+
+export const CardSummary = styled.div<CardSummaryProps>`
+  background: ${(props) => props.background || 'var(--shape)'};
   padding: 1.5rem 2rem;
   border-radius: 0.25rem;
-  color: var(--text-title);
+  color: ${(props) => props.color || 'var(--text-title)'};
 `;
 
 export const HeaderCard = styled.header`
