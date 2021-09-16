@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { TransactionContext } from 'TransactionContext';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
 import totalImg from '../../assets/total.svg';
@@ -5,6 +7,9 @@ import totalImg from '../../assets/total.svg';
 import * as Styled from './styles';
 
 export function Summary() {
+  const transactions = useContext(TransactionContext);
+  console.log(transactions);
+
   return (
     <Styled.Container>
       <Styled.CardSummary>
